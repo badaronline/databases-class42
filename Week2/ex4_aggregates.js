@@ -20,7 +20,7 @@ db.query("USE homeworkWeek2db", (err) => {
 });
 
 db.query(
-  "SELECT research_papers.paper_id, research_papers.paper_title, COUNT(authors.author_id) AS number_of_authors FROM research_papers JOIN author_research_paper ON author_research_paper.research_Paper_id = research_papers.paper_id JOIN authors ON author_research_paper.author_id = authors.author_id GROUP BY research_papers.paper_id ORDER BY research_papers.paper_id",
+  "SELECT research_papers.paper_id, research_papers.paper_title, COUNT(author_research_paper.author_id) AS number_of_authors FROM research_papers JOIN author_research_paper ON author_research_paper.research_Paper_id = research_papers.paper_id GROUP BY research_papers.paper_id",
   (err, result) => {
     if (err) {
       throw err;
@@ -30,7 +30,7 @@ db.query(
 );
 
 db.query(
-  'WITH new_table AS (SELECT authors.author_name, authors.gender, research_papers.paper_id, research_papers.paper_title FROM authors JOIN author_research_paper ON author_research_paper.research_Paper_id = authors.author_id JOIN research_papers ON author_research_paper.author_id = research_papers.paper_id WHERE authors.gender = "Female") SELECT COUNT(gender) AS Sum_of_the_research_papers_published_by_all_female_authors FROM new_table',
+  'SELECT COUNT(authors.gender) AS Sum_of_the_research_papers_published_by_all_female_authors FROM authors JOIN author_research_paper ON authors.author_id = author_research_paper.author_id JOIN research_papers ON author_research_paper.research_Paper_id = research_papers.paper_id WHERE authors.gender = "Female"',
   (err, result) => {
     if (err) {
       throw err;

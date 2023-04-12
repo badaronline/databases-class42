@@ -30,7 +30,7 @@ db.query(
 );
 
 db.query(
-  "SELECT authors.*, research_Papers.paper_title FROM author_research_Paper LEFT JOIN authors ON authors.author_id = author_research_Paper.author_id JOIN research_Papers ON  research_Papers.paper_id = author_research_Paper.research_Paper_id ORDER BY authors.author_id",
+  "SELECT authors.*, research_Papers.paper_title FROM author_research_Paper LEFT JOIN authors ON authors.author_id = author_research_Paper.author_id JOIN research_Papers ON research_Papers.paper_id = author_research_Paper.research_Paper_id",
   (err, result) => {
     if (err) {
       throw err;
